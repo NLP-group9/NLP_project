@@ -1,0 +1,12 @@
+defaults:
+  - data: data
+
+hydra:
+  output_subdir: null
+  # Hydra single-run working directory.
+  run:
+    dir: .
+  # Hydra multi-run working directories.
+  sweep:
+    dir: .
+    subdir: .
