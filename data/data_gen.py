@@ -50,10 +50,10 @@ def store_data_as_txt(split_name: str, dataset: Dataset, store_path: Path):
             document.write(remove_punctuation(data["document"]))
         # write summary
         summary_path = text_dir.joinpath(f"sum_{i}.txt")
-        with open(summary_path, "w") as document:
-            document.write(remove_punctuation(data["summary"]))
+        with open(summary_path, "w") as summary:
+            summary.write(remove_punctuation(data["summary"]))
 
-        return None
+    return None
 
 
 def data_gen() -> Tuple[Dataset, Dataset, Dataset]:
@@ -79,10 +79,16 @@ def main(args: DictConfig):
     # store datasets to text files
     if not hasattr(args.data, "store_path"):
         raise ValueError("Store_path has to be defined in ../conf/data/data.yaml !")
-    store_path = args.data.store_path
+    store_path = Path(args.data.store_path)
+    if not store_path.exists():
+        store_path.mkdir()
     split_names = ["train", "val", "test"]
     datasets_list = [train_dataset, val_dataset, test_dataset]
     _ = [
         store_data_as_txt(split_names[i], datasets_list[i], store_path)
         for i in range(len(split_names))
     ]
+
+
+if __name__ == "__main__":
+    main()
