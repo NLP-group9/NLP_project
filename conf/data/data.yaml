@@ -1,2 +1,8 @@
 # store data path
-store_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/NLP_project/xsum_data
+store_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/xsum_data
+# analysis path
+analysis_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/analysis
+# data max length
+max_length: 1000
+# data min length
+min_length: 50

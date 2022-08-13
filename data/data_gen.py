@@ -23,10 +23,11 @@ def remove_punctuation(text: str) -> str:
     return punctuation_free
 
 
-def store_data_as_txt(split_name: str, dataset: Dataset, store_path: Path):
+def store_data_as_txt(args: DictConfig, split_name: str, dataset: Dataset, store_path: Path):
     """Store dataset as txt files in directories.
 
     Args:
+        args: arguments of data_gen
         split_name: data set split name ["train", "test", "val"].
         dataset: huggingface dataset object.
         store_path: directory to store the text files.
@@ -38,7 +39,16 @@ def store_data_as_txt(split_name: str, dataset: Dataset, store_path: Path):
         return None
     cur_path.mkdir()
     print(f"Start generating {split_name} dataset!")
+    num_all = 0
+    num_select = 0
     for i, data in enumerate(tqdm(dataset)):
+        num_all += 1
+        # remove doc > max_len and doc < min_len.
+        doc = remove_punctuation(data["document"])
+        summ = remove_punctuation(data["summary"])
+        length_doc = len(" ".join(doc.split("\n")).split(" "))
+        if length_doc > args.max_length or length_doc < args.min_length:
+            continue
         # create a directory for each pair texts.
         text_dir = cur_path.joinpath(f"text_{i}")
         if text_dir.exists():
@@ -47,11 +57,17 @@ def store_data_as_txt(split_name: str, dataset: Dataset, store_path: Path):
         # write document
         document_path = text_dir.joinpath(f"doc_{i}.txt")
         with open(document_path, "w") as document:
-            document.write(remove_punctuation(data["document"]))
+            document.write(doc)
         # write summary
         summary_path = text_dir.joinpath(f"sum_{i}.txt")
         with open(summary_path, "w") as summary:
-            summary.write(remove_punctuation(data["summary"]))
+            summary.write(summ)
+        num_select += 1
+
+    print(
+        f"Finished generating {split_name} dataset, with {num_select} out of {num_all}. "
+        f"Extract rate:{num_select/num_all}"
+    )
 
     return None
 
@@ -85,7 +101,7 @@ def main(args: DictConfig):
     split_names = ["train", "val", "test"]
     datasets_list = [train_dataset, val_dataset, test_dataset]
     _ = [
-        store_data_as_txt(split_names[i], datasets_list[i], store_path)
+        store_data_as_txt(args.data, split_names[i], datasets_list[i], store_path)
         for i in range(len(split_names))
     ]
 
