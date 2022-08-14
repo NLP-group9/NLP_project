@@ -1,0 +1,42 @@
+[2022-08-13 12:12:49,879][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:50,617][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:50,624][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:12:51,239][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:51,246][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:12:51,711][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:51,717][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:12:59,138][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:59,596][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:12:59,603][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:13:00,030][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:13:00,035][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:13:00,446][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:13:00,451][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:14:29,981][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:14:30,466][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:14:30,473][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:14:30,910][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:14:30,914][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:14:31,348][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:14:31,354][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:15:17,435][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:15:17,867][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:15:17,871][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:15:18,325][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:15:18,333][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:15:18,768][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:15:18,771][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:16:01,216][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:16:02,120][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:16:02,130][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:16:02,745][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:16:02,753][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:16:03,350][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:16:03,356][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:18:08,249][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:18:08,956][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:18:08,960][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:18:09,635][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:18:09,639][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)
+[2022-08-13 12:18:10,643][datasets.builder][WARNING] - Using custom data configuration default
+[2022-08-13 12:18:10,650][datasets.builder][WARNING] - Reusing dataset xsum (/Users/congliu/.cache/huggingface/datasets/xsum/default/1.2.0/32c23220eadddb1149b16ed2e9430a05293768cfffbdfd151058697d4c11f934)

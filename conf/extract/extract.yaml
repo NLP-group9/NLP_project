@@ -1,0 +1,6 @@
+# data path for PyG dataset.
+PyG_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/PyG
+# overwrite
+overwrite: True
+# lowest frequency of words accepted by vocabulary.
+lowest_freq: 100
