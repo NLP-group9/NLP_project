@@ -131,9 +131,9 @@ def word2idx(
     """
     for file in directory.iterdir():
         if "doc" in file.name:
-            doc, doc_key_padding_masks = map_text(node_mapping, file, args.max_doc_lem)
+            doc, doc_key_padding_masks = map_text(node_mapping, file, args.max_doc_len)
         if "sum" in file.name:
-            summ, summ_key_padding_masks = map_text(node_mapping, file, args.max_sum_len    )
+            summ, summ_key_padding_masks = map_text(node_mapping, file, args.max_sum_len)
     return doc, summ, doc_key_padding_masks, summ_key_padding_masks
 
 
