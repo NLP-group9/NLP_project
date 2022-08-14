@@ -26,7 +26,7 @@ def collect_token_for_dataset(dataset_path: Path, node_mapping: DefaultDict) -> 
             for line in doc.readlines():
                 doc_str += line.lower()
             doc_str = " ".join(doc_str.split("\n"))
-            doc_str_list = doc_str.split("\n")
+            doc_str_list = doc_str.split(" ")
             for word in doc_str_list:
                 node_mapping[word] += 1
     return node_mapping
@@ -50,7 +50,7 @@ def clean_node_mapping(args: DictConfig, node_mapping: DefaultDict) -> DefaultDi
     # update node mappings
     # start with 1.
     for i, token in enumerate(token_list):
-        updated_node_mapping[token] = i + 1
+        updated_node_mapping[token] = i
     return updated_node_mapping
 
 
@@ -72,13 +72,56 @@ def get_node_mapping(args: DictConfig) -> DefaultDict:
     updated_node_mapping = clean_node_mapping(args.extract, node_mapping)
 
     # add UNK to the vocab, UNK will be automatically assign with 0.
+    special_tokens = ["START", "END", "PAD", "UNK"]
+    for token in special_tokens:
+        add_idx = list(updated_node_mapping.values())[-1] + 1
+        updated_node_mapping[token] = add_idx
+
     return updated_node_mapping
 
 
-def word2idx(directory: Path, node_mapping: DefaultDict) -> Tuple[np.ndarray, np.ndarray]:
+def map_text(
+    node_mapping: DefaultDict,
+    file: Path,
+    max_len_doc: int,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Process text to generate cleaned mapped text.
+
+    Args:
+        node_mapping: vocabulary.
+        file: file path of text file.
+        max_doc_len: maximum text length.
+
+    Returns:
+        doc: processed mapped text.
+        doc_key_padding_masks: masks of doc, padding=1.
+    """
+    with open(file) as document:
+        doc_str = ""
+        for line in document.readlines():
+            doc_str += line
+        doc_str = "START " + doc_str + " END"
+        doc_len = len(doc_str.split(" "))
+        if doc_len >= max_len_doc:
+            added_doc_list = doc_str.split(" ")[: max_len_doc - 1] + ["END"]
+        else:
+            add_len = max_len_doc - doc_len
+            added_doc_list = doc_str.split(" ") + ["PAD"] * add_len
+        doc = np.array(
+            [int(node_mapping.get(word, node_mapping["UNK"])) for word in added_doc_list]
+        )
+        doc_key_padding_masks = np.zeros(len(added_doc_list))
+        doc_key_padding_masks[doc_len:-1] = 1
+    return doc, doc_key_padding_masks
+
+
+def word2idx(
+    args: DictConfig, directory: Path, node_mapping: DefaultDict
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     """Extract document and summary as index.
 
     Args:
+        args: extract.yaml
         directory: directory path of one doc-sum pair.
         node_mapping: vocab mapping str to idx.
 
@@ -86,22 +129,12 @@ def word2idx(directory: Path, node_mapping: DefaultDict) -> Tuple[np.ndarray, np
         doc: converted document idxes.
         summ: converted summ idxes.
     """
-    doc = []
-    summ = []
     for file in directory.iterdir():
-        if "doc" in str(file):
-            with open(file) as document:
-                doc_str = ""
-                for line in document.readlines():
-                    doc_str += line
-                doc = np.array([int(node_mapping[word]) for word in doc_str.split(" ")])
-        if "sum" in str(file):
-            with open(file) as summary:
-                sum_str = ""
-                for line in summary.readlines():
-                    sum_str += line
-                summ = np.array([int(node_mapping[word]) for word in sum_str.split(" ")])
-    return doc, summ
+        if "doc" in file.name:
+            doc, doc_key_padding_masks = map_text(node_mapping, file, args.max_len_doc)
+        if "sum" in file.name:
+            summ, summ_key_padding_masks = map_text(node_mapping, file, args.max_len_sum)
+    return doc, summ, doc_key_padding_masks, summ_key_padding_masks
 
 
 def get_entity(doc: np.ndarray):
@@ -155,12 +188,16 @@ def build_graphs(args: DictConfig, split_name: str, data_root: Path, node_mappin
         if not out_path_folder.exists():
             out_path_folder.mkdir()
         out_path = out_path_folder / f"{directory.stem}.pt"
-        doc, summ = word2idx(directory, node_mapping)
+        doc, summ, doc_key_padding_masks, summ_key_padding_masks = word2idx(
+            args, directory, node_mapping
+        )
         edge_index = get_relations(doc)
         data = Data(
             x=torch.from_numpy(doc),
             edge_index=torch.from_numpy(edge_index),
             y=torch.from_numpy(summ),
             file_name=str(directory.stem),
+            doc_key_padding_masks=doc_key_padding_masks,
+            summ_key_padding_masks=summ_key_padding_masks,
         )
         torch.save(data, out_path)

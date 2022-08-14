@@ -18,11 +18,12 @@ def extract(args: DictConfig):
     # generate mappings for node
     print("Start generating node mappings.")
     node_mapping = get_node_mapping(args)
+    print(node_mapping)
 
     if not Path(args_extract.PyG_path).exists():
         Path(args_extract.PyG_path).mkdir()
     # save node_mapping
-    with open(Path(args_extract.PyG_path) / "atom_mapping.json", "w") as file:
+    with open(Path(args_extract.PyG_path) / "node_mapping.json", "w") as file:
         json.dump(node_mapping, file)
 
     # generate pt graph
@@ -42,7 +43,10 @@ def extract(args: DictConfig):
         print("Start generating PyG.")
     for split_name in split_names:
         build_graphs(args_extract, split_name, data_root, node_mapping)
+    return node_mapping
 
 
 if __name__ == "__main__":
-    extract()
+    node_mapping_ = extract()
+    with open("/Users/congliu/Desktop/PyG/node_mapping.json", "w") as file:
+        json.dump(node_mapping_, file)

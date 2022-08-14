@@ -1,6 +1,10 @@
 # data path for PyG dataset.
-PyG_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/PyG
+PyG_path: /Users/congliu/Desktop/PyG/
 # overwrite
 overwrite: True
 # lowest frequency of words accepted by vocabulary.
 lowest_freq: 100
+# maximum document length
+max_doc_len: 600
+# maximum summary length
+max_sum_len: 100

@@ -21,7 +21,7 @@ def remove_punctuation(text: str) -> str:
         punctuation_free: processed text.
     """
     punctuation_free = "".join([i for i in text if i not in string.punctuation])
-    punctuation_free = " ".join(punctuation_free.split("\n"))
+    punctuation_free = " ".join(punctuation_free.split("\n")).lower()
     return punctuation_free
 
 
