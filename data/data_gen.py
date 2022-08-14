@@ -2,6 +2,7 @@
 
 import string
 from pathlib import Path
+from shutil import rmtree
 from typing import Tuple
 
 import hydra
@@ -20,6 +21,7 @@ def remove_punctuation(text: str) -> str:
         punctuation_free: processed text.
     """
     punctuation_free = "".join([i for i in text if i not in string.punctuation])
+    punctuation_free = " ".join(punctuation_free.split("\n"))
     return punctuation_free
 
 
@@ -36,7 +38,11 @@ def store_data_as_txt(args: DictConfig, split_name: str, dataset: Dataset, store
     cur_path = store_path.joinpath(split_name)
     if cur_path.exists():
         print(f"{split_name} dataset has been generated!")
-        return None
+        if args.overwrite is False:
+            return None
+        else:
+            print("Delete generated dataset")
+            rmtree(cur_path)
     cur_path.mkdir()
     print(f"Start generating {split_name} dataset!")
     num_all = 0

@@ -46,7 +46,3 @@ def main(args: DictConfig):
         analysis(args_data, Path(args_data.store_path).joinpath(split_name), split_name)
         for split_name in split_names
     ]
-
-
-if __name__ == "__main__":
-    main()

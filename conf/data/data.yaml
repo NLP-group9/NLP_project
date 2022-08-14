@@ -1,5 +1,7 @@
 # store data path
 store_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/xsum_data
+# overwrite dataset
+overwrite: True
 # analysis path
 analysis_path: /Users/congliu/Desktop/UCL/Course Material/COMP0087/NLP_research/analysis
 # data max length
