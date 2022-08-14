@@ -83,7 +83,7 @@ def get_node_mapping(args: DictConfig) -> DefaultDict:
 def map_text(
     node_mapping: DefaultDict,
     file: Path,
-    max_len_doc: int,
+    max_doc_len: int,
 ) -> Tuple[np.ndarray, np.ndarray]:
     """Process text to generate cleaned mapped text.
 
@@ -102,10 +102,10 @@ def map_text(
             doc_str += line
         doc_str = "START " + doc_str + " END"
         doc_len = len(doc_str.split(" "))
-        if doc_len >= max_len_doc:
-            added_doc_list = doc_str.split(" ")[: max_len_doc - 1] + ["END"]
+        if doc_len >= max_doc_len:
+            added_doc_list = doc_str.split(" ")[: max_doc_len - 1] + ["END"]
         else:
-            add_len = max_len_doc - doc_len
+            add_len = max_doc_len - doc_len
             added_doc_list = doc_str.split(" ") + ["PAD"] * add_len
         doc = np.array(
             [int(node_mapping.get(word, node_mapping["UNK"])) for word in added_doc_list]
@@ -131,9 +131,9 @@ def word2idx(
     """
     for file in directory.iterdir():
         if "doc" in file.name:
-            doc, doc_key_padding_masks = map_text(node_mapping, file, args.max_len_doc)
+            doc, doc_key_padding_masks = map_text(node_mapping, file, args.max_doc_lem)
         if "sum" in file.name:
-            summ, summ_key_padding_masks = map_text(node_mapping, file, args.max_len_sum)
+            summ, summ_key_padding_masks = map_text(node_mapping, file, args.max_sum_len    )
     return doc, summ, doc_key_padding_masks, summ_key_padding_masks
 
 
