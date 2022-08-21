@@ -1,6 +1,7 @@
 defaults:
   - data: data
   - extract: extract
+  - model: model
 
 hydra:
   output_subdir: null
