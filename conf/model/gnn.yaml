@@ -1,0 +1,14 @@
+# dimension of embeddings.
+dim_emb: 128
+# number of multi-head attention layers in encoder.
+num_conv: 2
+# number of linear layer existed in encoder.
+num_linear: 2
+# number of heads in decoder.
+num_heads_decoder: 4
+# number of decoder transformer layer.
+num_decoder_layer: 2
+# number of heads in encoder layer.
+num_heads: 4
+# dropout rate in TransformerConv.
+dropout_rate: 0.1
